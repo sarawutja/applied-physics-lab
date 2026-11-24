@@ -1,0 +1,749 @@
+/* =========================================================
+   RMUTT 09412214 — Applied Physics Laboratory
+   Light Academic Theme (White / Sky Blue / Deep Navy)
+   ========================================================= */
+
+:root {
+  --navy-900: #0c2340;
+  --navy-800: #13315c;
+  --blue-700: #1d4ed8;
+  --blue-600: #2563eb;
+  --sky-600: #0284c7;
+  --sky-100: #e0f2fe;
+  --sky-50: #f0f9ff;
+  --slate-900: #0f172a;
+  --slate-700: #334155;
+  --slate-600: #475569;
+  --slate-500: #64748b;
+  --slate-200: #e2e8f0;
+  --slate-100: #f1f5f9;
+  --slate-50: #f8fafc;
+  --white: #ffffff;
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 14px rgba(15, 23, 42, 0.07);
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --nav-height: 62px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + 18px);
+}
+
+body {
+  margin: 0;
+  font-family: "Sarabun", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: var(--slate-50);
+  color: var(--slate-900);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--blue-600);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ---------- Top Navigation Bar ---------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--slate-200);
+}
+
+.navbar-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand-code {
+  font-family: "Inter", "Sarabun", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--navy-900);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand-code:hover {
+  color: var(--blue-600);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  display: inline-block;
+  padding: 7px 12px;
+  border-radius: 8px;
+  font-family: "Inter", "Sarabun", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--slate-700);
+  transition: background-color 0.16s ease, color 0.16s ease;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  background-color: var(--sky-50);
+  color: var(--blue-700);
+  text-decoration: none;
+}
+
+.nav-links a.active {
+  background-color: var(--sky-100);
+  color: var(--navy-900);
+  font-weight: 600;
+}
+
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--slate-200);
+  border-radius: 8px;
+  padding: 7px 10px;
+  cursor: pointer;
+  color: var(--navy-900);
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-toggle:hover {
+  background-color: var(--slate-100);
+}
+
+.mobile-menu {
+  display: none;
+  background: var(--white);
+  border-bottom: 1px solid var(--slate-200);
+  padding: 10px 20px 14px;
+  box-shadow: var(--shadow-md);
+}
+
+.mobile-menu.open {
+  display: block;
+}
+
+.mobile-menu a {
+  display: block;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-family: "Inter", "Sarabun", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--slate-700);
+  text-decoration: none;
+}
+
+.mobile-menu a:hover,
+.mobile-menu a.active {
+  background-color: var(--sky-50);
+  color: var(--blue-700);
+}
+
+/* ---------- Hero Banner ---------- */
+.hero-wrapper {
+  background: var(--white);
+  border-bottom: 1px solid var(--slate-200);
+}
+
+.hero-banner-box {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-banner-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 1;
+  object-fit: cover;
+}
+
+.hero-banner-fallback {
+  display: none;
+  width: 100%;
+  min-height: 190px;
+  padding: 36px 40px;
+  background: linear-gradient(90deg, #ffffff 0%, #f5faff 48%, #e0f2fe 100%);
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-banner-fallback.visible {
+  display: flex;
+}
+
+.hero-meta {
+  font-family: "Inter", "Sarabun", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--sky-600);
+  margin-bottom: 6px;
+}
+
+.hero-title-en {
+  font-family: "Inter", "Sarabun", sans-serif;
+  font-size: clamp(1.6rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  color: var(--navy-900);
+  margin: 0 0 4px;
+  line-height: 1.15;
+}
+
+.hero-title-th {
+  font-size: clamp(1.15rem, 2.1vw, 1.55rem);
+  font-weight: 600;
+  color: var(--blue-700);
+  margin: 0;
+}
+
+/* ---------- Main Content & Sections ---------- */
+main {
+  padding: 34px 0 56px;
+}
+
+.section-card {
+  background: var(--white);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 28px 30px;
+  margin-bottom: 28px;
+}
+
+.section-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--sky-100);
+}
+
+.section-title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--navy-900);
+}
+
+.section-subtitle {
+  font-family: "Inter", "Sarabun", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--sky-600);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* ---------- Home / Course Details ---------- */
+.course-info-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.course-info-table tr {
+  border-bottom: 1px solid var(--slate-100);
+}
+
+.course-info-table tr:last-child {
+  border-bottom: none;
+}
+
+.course-info-table th {
+  width: 28%;
+  min-width: 190px;
+  padding: 11px 14px 11px 4px;
+  text-align: left;
+  vertical-align: top;
+  font-weight: 600;
+  color: var(--navy-800);
+  background: transparent;
+}
+
+.course-info-table td {
+  padding: 11px 4px 11px 12px;
+  vertical-align: top;
+  color: var(--slate-700);
+}
+
+.description-box {
+  margin-top: 20px;
+  padding: 18px 20px;
+  border-radius: var(--radius-md);
+  background: var(--sky-50);
+  border-left: 4px solid var(--blue-600);
+}
+
+.description-box h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy-900);
+}
+
+.description-box p {
+  margin: 0 0 8px;
+  color: var(--slate-700);
+}
+
+.description-box p:last-child {
+  margin-bottom: 0;
+  color: var(--slate-600);
+}
+
+/* ---------- Instructors Grid ---------- */
+.instructors-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.instructor-card {
+  background: var(--slate-50);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-md);
+  padding: 18px 18px 16px;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.instructor-card:hover {
+  border-color: #93c5fd;
+  box-shadow: var(--shadow-sm);
+}
+
+.instructor-role {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--sky-600);
+  background: var(--sky-100);
+  padding: 2px 9px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+
+.instructor-name {
+  margin: 0 0 10px;
+  font-size: 1.04rem;
+  font-weight: 700;
+  color: var(--navy-900);
+}
+
+.instructor-meta {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+  color: var(--slate-600);
+}
+
+.instructor-meta li {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  word-break: break-word;
+}
+
+.instructor-meta li:last-child {
+  margin-bottom: 0;
+}
+
+.meta-label {
+  font-weight: 600;
+  color: var(--slate-700);
+  white-space: nowrap;
+}
+
+/* ---------- General Data Tables ---------- */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-md);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.data-table thead th {
+  background: var(--navy-900);
+  color: var(--white);
+  font-weight: 600;
+  padding: 11px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--navy-800);
+  white-space: nowrap;
+}
+
+.data-table tbody td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--slate-200);
+  color: var(--slate-700);
+  vertical-align: top;
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table tbody tr:nth-child(even) {
+  background-color: var(--slate-50);
+}
+
+.data-table tfoot td {
+  padding: 11px 14px;
+  font-weight: 700;
+  color: var(--navy-900);
+  background: var(--sky-50);
+  border-top: 2px solid #bae6fd;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.clo-prefix {
+  font-weight: 700;
+  color: var(--navy-900);
+}
+
+.pct-value {
+  font-family: "Inter", "Sarabun", sans-serif;
+  font-weight: 700;
+  color: var(--navy-900);
+  white-space: nowrap;
+}
+
+/* ---------- Grading Section ---------- */
+.grading-intro {
+  margin: 0 0 16px;
+  color: var(--slate-700);
+}
+
+.grading-table-wrap {
+  max-width: 680px;
+}
+
+.grade-badge {
+  display: inline-block;
+  min-width: 34px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-family: "Inter", "Sarabun", sans-serif;
+  font-weight: 700;
+  background: var(--sky-50);
+  color: var(--navy-900);
+  border: 1px solid #bae6fd;
+}
+
+.grade-badge.grade-f {
+  background: #fef2f2;
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+.grading-pass-note {
+  margin: 16px 0 12px;
+  font-weight: 600;
+  color: var(--navy-900);
+}
+
+.grading-appeal-box {
+  margin-top: 12px;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  background: var(--slate-50);
+  border: 1px solid var(--slate-200);
+  color: var(--slate-600);
+  font-size: 0.93rem;
+}
+
+/* ---------- Schedule Section ---------- */
+.schedule-block {
+  margin-bottom: 26px;
+}
+
+.schedule-block:last-child {
+  margin-bottom: 0;
+}
+
+.schedule-block-title {
+  margin: 0 0 10px;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--navy-800);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.schedule-block-title::before {
+  content: "";
+  width: 4px;
+  height: 18px;
+  border-radius: 2px;
+  background: var(--blue-600);
+  display: inline-block;
+}
+
+.schedule-table th,
+.schedule-table td {
+  font-size: 0.9rem;
+  padding: 10px 10px;
+}
+
+.schedule-table td.exp-title {
+  min-width: 220px;
+  color: var(--slate-900);
+}
+
+.schedule-table td.room-col,
+.schedule-table td.teacher-col {
+  white-space: nowrap;
+}
+
+.schedule-table td.date-cell {
+  text-align: center;
+  white-space: nowrap;
+  color: var(--slate-700);
+  font-weight: 500;
+}
+
+.exam-notice {
+  margin-top: 12px;
+  padding: 11px 16px;
+  border-radius: var(--radius-md);
+  background: var(--sky-50);
+  border: 1px solid #bae6fd;
+  color: var(--navy-900);
+  font-weight: 600;
+  font-size: 0.94rem;
+}
+
+/* ---------- Group & Scores Table ---------- */
+.group-table thead tr:first-child th {
+  background: var(--navy-900);
+  border-bottom: 1px solid #234572;
+  border-right: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.group-table thead tr:nth-child(2) th {
+  background: var(--navy-800);
+  font-size: 0.84rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.group-table thead th:last-child {
+  border-right: none;
+}
+
+.group-table tbody td {
+  font-size: 0.91rem;
+  padding: 10px 10px;
+  white-space: nowrap;
+}
+
+.group-table tbody td.student-name {
+  white-space: nowrap;
+  font-weight: 500;
+  color: var(--slate-900);
+}
+
+.group-table tbody td.student-id {
+  font-family: "Inter", "Sarabun", sans-serif;
+  color: var(--slate-700);
+}
+
+.group-table tbody td.score-cell {
+  text-align: center;
+  font-family: "Inter", "Sarabun", sans-serif;
+}
+
+.group-table tbody td.score-empty {
+  color: #94a3b8;
+}
+
+.group-table tbody td.score-total {
+  font-weight: 700;
+  color: var(--navy-900);
+}
+
+/* Distinct pastel color bands per lab group */
+.group-table tbody tr.group-band-0 {
+  background-color: #eff6ff !important;
+}
+.group-table tbody tr.group-band-0 td:first-child {
+  border-left: 4px solid #2563eb;
+  font-weight: 700;
+  color: #1d4ed8;
+}
+
+.group-table tbody tr.group-band-1 {
+  background-color: #ecfdf5 !important;
+}
+.group-table tbody tr.group-band-1 td:first-child {
+  border-left: 4px solid #059669;
+  font-weight: 700;
+  color: #047857;
+}
+
+.group-table tbody tr.group-band-2 {
+  background-color: #fffbeb !important;
+}
+.group-table tbody tr.group-band-2 td:first-child {
+  border-left: 4px solid #d97706;
+  font-weight: 700;
+  color: #b45309;
+}
+
+.group-table tbody tr.group-band-3 {
+  background-color: #f5f3ff !important;
+}
+.group-table tbody tr.group-band-3 td:first-child {
+  border-left: 4px solid #7c3aed;
+  font-weight: 700;
+  color: #6d28d9;
+}
+
+.group-table tbody tr.group-band-4 {
+  background-color: #fff1f2 !important;
+}
+.group-table tbody tr.group-band-4 td:first-child {
+  border-left: 4px solid #e11d48;
+  font-weight: 700;
+  color: #be123c;
+}
+
+.group-table tbody tr.group-band-5 {
+  background-color: #ecfeff !important;
+}
+.group-table tbody tr.group-band-5 td:first-child {
+  border-left: 4px solid #0891b2;
+  font-weight: 700;
+  color: #0e7490;
+}
+
+.group-table tbody tr.group-divider td {
+  border-top: 2px solid #cbd5e1;
+}
+
+.group-pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--white);
+  border-top: 1px solid var(--slate-200);
+  padding: 24px 0;
+  text-align: center;
+  color: var(--slate-500);
+  font-size: 0.9rem;
+}
+
+.site-footer strong {
+  color: var(--navy-900);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .instructors-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .section-card {
+    padding: 20px 16px;
+  }
+
+  .course-info-table th,
+  .course-info-table td {
+    display: block;
+    width: 100%;
+    padding: 6px 2px;
+  }
+
+  .course-info-table th {
+    padding-top: 10px;
+    padding-bottom: 2px;
+    font-size: 0.9rem;
+  }
+
+  .course-info-table td {
+    padding-bottom: 10px;
+  }
+
+  .instructors-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-banner-fallback {
+    min-height: 150px;
+    padding: 24px 20px;
+  }
+}
