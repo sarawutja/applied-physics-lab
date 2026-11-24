@@ -96,21 +96,20 @@ const FALLBACK_DATA = {
     ["สอบปลายภาค วันที่ 15 มีนาคม พ.ศ. 2570 เวลา 13.00 - 16.00 น.", "", "", "", "", "", "", "", "", ""],
   ],
   Group: [
-    ["", "", "", "กลางภาค", "", "", "ปลายภาค", "", "", "", ""],
-    ["กลุ่มที่", "รหัสนักศึกษา", "ชื่อ สกุล", "ทักษะปฏิบัติ (6%)", "รายงานผล (24%)", "สอบ (15%)", "ทักษะปฏิบัติ (6%)", "รายงานผล (24%)", "สอบ (15%)", "จิตพิสัย (10%)", "รวม (100%)"],
-    ["1", "112233445566-1", "กิตติพงศ์ วัฒนากูล", "", "", "", "", "", "", "", ""],
-    ["1", "112233445566-2", "ณัฐธิดา ศรีสุวรรณ", "", "", "", "", "", "", "", ""],
-    ["1", "112233445566-3", "ธนกฤต อัครเดชา", "", "", "", "", "", "", "", ""],
-    ["1", "112233445566-4", "ปิยะดา พงษ์ไพบูลย์", "", "", "", "", "", "", "", ""],
-    ["2", "112233445566-5", "ภานุวัฒน์ เจริญสุข", "", "", "", "", "", "", "", ""],
-    ["2", "112233445566-6", "วรัญญา กิจจานนท์", "", "", "", "", "", "", "", ""],
-    ["2", "112233445566-7", "ศุภณัฐ บุญมีชัย", "", "", "", "", "", "", "", ""],
-    ["2", "112233445566-8", "สิริยากร ทองประเสริฐ", "", "", "", "", "", "", "", ""],
-    ["3", "112233445566-9", "อภิสิทธิ์ รัตนวงศ์", "", "", "", "", "", "", "", ""],
-    ["3", "112233445566-1", "ชนิกานต์ วงศ์สุวรรณ", "", "", "", "", "", "", "", ""],
-    ["3", "112233445566-2", "พัชรพล ดำรงค์ศิลป์", "", "", "", "", "", "", "", ""],
-    ["3", "112233445566-3", "มนัสนันท์ แสงจันทร์", "", "", "", "", "", "", "", ""],
-    ["3", "112233445566-4", "รัชชานนท์ สุขสวัสดิ์", "", "", "", "", "", "", "", ""],
+    ["กลุ่มที่", "รหัสนักศึกษา", "ชื่อ สกุล"],
+    ["1", "112233445566-1", "กิตติพงศ์ วัฒนากูล"],
+    ["1", "112233445566-2", "ณัฐธิดา ศรีสุวรรณ"],
+    ["1", "112233445566-3", "ธนกฤต อัครเดชา"],
+    ["1", "112233445566-4", "ปิยะดา พงษ์ไพบูลย์"],
+    ["2", "112233445566-5", "ภานุวัฒน์ เจริญสุข"],
+    ["2", "112233445566-6", "วรัญญา กิจจานนท์"],
+    ["2", "112233445566-7", "ศุภณัฐ บุญมีชัย"],
+    ["2", "112233445566-8", "สิริยากร ทองประเสริฐ"],
+    ["3", "112233445566-9", "อภิสิทธิ์ รัตนวงศ์"],
+    ["3", "112233445566-1", "ชนิกานต์ วงศ์สุวรรณ"],
+    ["3", "112233445566-2", "พัชรพล ดำรงค์ศิลป์"],
+    ["3", "112233445566-3", "มนัสนันท์ แสงจันทร์"],
+    ["3", "112233445566-4", "รัชชานนท์ สุขสวัสดิ์"],
   ],
 };
 
@@ -701,58 +700,31 @@ function renderGroup(rows) {
   const container = document.getElementById("group-content");
   const validRows = rows.filter((r) => r.some((c) => cleanText(c) !== ""));
 
-  let subHeaderIdx = validRows.findIndex(
+  let headerIdx = validRows.findIndex(
     (r) =>
       r.some((c) => cleanText(c).includes("รหัสนักศึกษา")) ||
       r.some((c) => cleanText(c).includes("ชื่อ"))
   );
 
-  const effectiveRows = subHeaderIdx !== -1 ? validRows : FALLBACK_DATA.Group;
-  if (subHeaderIdx === -1) subHeaderIdx = 1;
+  const effectiveRows = headerIdx !== -1 ? validRows : FALLBACK_DATA.Group;
+  if (headerIdx === -1) headerIdx = 0;
 
-  const topHeaderRow = subHeaderIdx > 0 ? effectiveRows[subHeaderIdx - 1] : [];
-  const subHeaderRow = effectiveRows[subHeaderIdx] || [];
+  const headerRow = effectiveRows[headerIdx] || [];
   const studentRows = effectiveRows
-    .slice(subHeaderIdx + 1)
+    .slice(headerIdx + 1)
     .filter((r) => cleanText(r[1]) || cleanText(r[2]));
 
-  // Column labels with sensible defaults matching the sheet
-  const colCount = Math.max(11, subHeaderRow.length);
-  const subLabels = [];
-  for (let c = 0; c < colCount; c++) {
-    let lbl = cleanText(subHeaderRow[c]);
-    if (!lbl && FALLBACK_DATA.Group[1][c]) lbl = FALLBACK_DATA.Group[1][c];
-    subLabels.push(lbl);
-  }
+  // Display strictly 3 columns: กลุ่มที่, รหัสนักศึกษา, ชื่อ สกุล
+  const col0Label = cleanText(headerRow[0]) || "กลุ่มที่";
+  const col1Label = cleanText(headerRow[1]) || "รหัสนักศึกษา";
+  const col2Label = cleanText(headerRow[2]) || "ชื่อ สกุล";
 
-  // Build 2-row merged table header if standard 11-column Group layout
-  let theadHtml = "";
-  if (colCount === 11) {
-    const midLabel = cleanText(topHeaderRow[3]) || "กลางภาค";
-    const finLabel = cleanText(topHeaderRow[6]) || "ปลายภาค";
-    theadHtml = `
-      <tr>
-        <th rowspan="2" class="text-center">${escapeHtml(subLabels[0])}</th>
-        <th rowspan="2" class="text-center">${escapeHtml(subLabels[1])}</th>
-        <th rowspan="2">${escapeHtml(subLabels[2])}</th>
-        <th colspan="3" class="text-center">${escapeHtml(midLabel)}</th>
-        <th colspan="3" class="text-center">${escapeHtml(finLabel)}</th>
-        <th rowspan="2" class="text-center">${escapeHtml(subLabels[9])}</th>
-        <th rowspan="2" class="text-center">${escapeHtml(subLabels[10])}</th>
-      </tr>
-      <tr>
-        <th class="text-center">${escapeHtml(subLabels[3])}</th>
-        <th class="text-center">${escapeHtml(subLabels[4])}</th>
-        <th class="text-center">${escapeHtml(subLabels[5])}</th>
-        <th class="text-center">${escapeHtml(subLabels[6])}</th>
-        <th class="text-center">${escapeHtml(subLabels[7])}</th>
-        <th class="text-center">${escapeHtml(subLabels[8])}</th>
-      </tr>`;
-  } else {
-    theadHtml = `<tr>${subLabels
-      .map((lbl, idx) => `<th class="${idx === 2 ? "" : "text-center"}">${escapeHtml(lbl)}</th>`)
-      .join("")}</tr>`;
-  }
+  const theadHtml = `
+    <tr>
+      <th class="text-center" style="width: 150px;">${escapeHtml(col0Label)}</th>
+      <th class="text-center" style="width: 240px;">${escapeHtml(col1Label)}</th>
+      <th>${escapeHtml(col2Label)}</th>
+    </tr>`;
 
   // Assign distinct pastel color band per unique group value
   const groupColorMap = new Map();
@@ -762,6 +734,9 @@ function renderGroup(rows) {
 
   for (const r of studentRows) {
     const grp = cleanText(r[0]) || prevGroup || "-";
+    const studentId = cleanText(r[1]);
+    const studentName = cleanText(r[2]);
+
     if (!groupColorMap.has(grp)) {
       groupColorMap.set(grp, nextColorIdx % 6);
       nextColorIdx++;
@@ -770,22 +745,12 @@ function renderGroup(rows) {
     const dividerClass = prevGroup !== null && prevGroup !== grp ? " group-divider" : "";
     prevGroup = grp;
 
-    tbodyHtml += `<tr class="${bandClass}${dividerClass}">`;
-    for (let c = 0; c < colCount; c++) {
-      const val = cleanText(r[c]);
-      if (c === 0) {
-        tbodyHtml += `<td class="text-center"><span class="group-pill">กลุ่ม ${escapeHtml(grp)}</span></td>`;
-      } else if (c === 1) {
-        tbodyHtml += `<td class="text-center student-id">${escapeHtml(val)}</td>`;
-      } else if (c === 2) {
-        tbodyHtml += `<td class="student-name">${escapeHtml(val)}</td>`;
-      } else if (c === colCount - 1) {
-        tbodyHtml += `<td class="score-cell ${val ? "score-total" : "score-empty"}">${escapeHtml(val || "-")}</td>`;
-      } else {
-        tbodyHtml += `<td class="score-cell ${val ? "" : "score-empty"}">${escapeHtml(val || "-")}</td>`;
-      }
-    }
-    tbodyHtml += `</tr>`;
+    tbodyHtml += `
+      <tr class="${bandClass}${dividerClass}">
+        <td class="text-center"><span class="group-pill">กลุ่ม ${escapeHtml(grp)}</span></td>
+        <td class="text-center student-id">${escapeHtml(studentId)}</td>
+        <td class="student-name">${escapeHtml(studentName)}</td>
+      </tr>`;
   }
 
   container.innerHTML = `

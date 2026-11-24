@@ -570,31 +570,15 @@ main {
   font-size: 0.94rem;
 }
 
-/* ---------- Group & Scores Table ---------- */
-.group-table thead tr:first-child th {
-  background: var(--navy-900);
-  border-bottom: 1px solid #234572;
-  border-right: 1px solid rgba(255, 255, 255, 0.14);
-}
-
-.group-table thead tr:nth-child(2) th {
-  background: var(--navy-800);
-  font-size: 0.84rem;
-  border-right: 1px solid rgba(255, 255, 255, 0.14);
-}
-
-.group-table thead th:last-child {
-  border-right: none;
-}
-
+/* ---------- Group Table ---------- */
 .group-table tbody td {
-  font-size: 0.91rem;
-  padding: 10px 10px;
+  font-size: 0.94rem;
+  padding: 11px 14px;
   white-space: nowrap;
 }
 
 .group-table tbody td.student-name {
-  white-space: nowrap;
+  white-space: normal;
   font-weight: 500;
   color: var(--slate-900);
 }
@@ -602,20 +586,6 @@ main {
 .group-table tbody td.student-id {
   font-family: "Inter", "Sarabun", sans-serif;
   color: var(--slate-700);
-}
-
-.group-table tbody td.score-cell {
-  text-align: center;
-  font-family: "Inter", "Sarabun", sans-serif;
-}
-
-.group-table tbody td.score-empty {
-  color: #94a3b8;
-}
-
-.group-table tbody td.score-total {
-  font-weight: 700;
-  color: var(--navy-900);
 }
 
 /* Distinct pastel color bands per lab group */
