@@ -531,9 +531,9 @@ function renderGrading(rows) {
       <table class="data-table">
         <thead>
           <tr>
-            <th class="text-center">ระดับคะแนน</th>
-            <th class="text-center">ค่าระดับคะแนนต่อหน่วยกิต</th>
-            <th class="text-center">ช่วงคะแนน</th>
+            <th class="text-center" style="width: 30%;">ระดับคะแนน</th>
+            <th class="text-center" style="width: 35%;">ค่าระดับคะแนนต่อหน่วยกิต</th>
+            <th class="text-center" style="width: 35%;">ช่วงคะแนน</th>
           </tr>
         </thead>
         <tbody>`;
@@ -726,9 +726,9 @@ function renderGroup(rows) {
       <th>${escapeHtml(col2Label)}</th>
     </tr>`;
 
-  // Assign distinct pastel color band per unique group value
-  const groupColorMap = new Map();
-  let nextColorIdx = 0;
+  // Alternate clean white and soft gray shading per lab group
+  const groupOrderMap = new Map();
+  let nextGroupIdx = 0;
   let prevGroup = null;
   let tbodyHtml = "";
 
@@ -737,17 +737,17 @@ function renderGroup(rows) {
     const studentId = cleanText(r[1]);
     const studentName = cleanText(r[2]);
 
-    if (!groupColorMap.has(grp)) {
-      groupColorMap.set(grp, nextColorIdx % 6);
-      nextColorIdx++;
+    if (!groupOrderMap.has(grp)) {
+      groupOrderMap.set(grp, nextGroupIdx);
+      nextGroupIdx++;
     }
-    const bandClass = `group-band-${groupColorMap.get(grp)}`;
+    const toneClass = groupOrderMap.get(grp) % 2 === 0 ? "group-row-even" : "group-row-odd";
     const dividerClass = prevGroup !== null && prevGroup !== grp ? " group-divider" : "";
     prevGroup = grp;
 
     tbodyHtml += `
-      <tr class="${bandClass}${dividerClass}">
-        <td class="text-center"><span class="group-pill">กลุ่ม ${escapeHtml(grp)}</span></td>
+      <tr class="${toneClass}${dividerClass}">
+        <td class="text-center"><span class="group-label">กลุ่ม ${escapeHtml(grp)}</span></td>
         <td class="text-center student-id">${escapeHtml(studentId)}</td>
         <td class="student-name">${escapeHtml(studentName)}</td>
       </tr>`;

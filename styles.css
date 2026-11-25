@@ -15,6 +15,7 @@
   --slate-700: #334155;
   --slate-600: #475569;
   --slate-500: #64748b;
+  --slate-300: #cbd5e1;
   --slate-200: #e2e8f0;
   --slate-100: #f1f5f9;
   --slate-50: #f8fafc;
@@ -24,6 +25,11 @@
   --radius-md: 10px;
   --radius-lg: 14px;
   --nav-height: 62px;
+
+  /* Consistent Typography Scale */
+  --font-content: 0.95rem;
+  --font-subheading: 1.05rem;
+  --font-heading: 1.3rem;
 }
 
 *,
@@ -40,6 +46,7 @@ html {
 body {
   margin: 0;
   font-family: "Sarabun", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: var(--font-content);
   background-color: var(--slate-50);
   color: var(--slate-900);
   line-height: 1.65;
@@ -111,7 +118,7 @@ a:hover {
   padding: 7px 12px;
   border-radius: 8px;
   font-family: "Inter", "Sarabun", sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   font-weight: 500;
   color: var(--slate-700);
   transition: background-color 0.16s ease, color 0.16s ease;
@@ -163,7 +170,7 @@ a:hover {
   padding: 9px 12px;
   border-radius: 8px;
   font-family: "Inter", "Sarabun", sans-serif;
-  font-size: 0.95rem;
+  font-size: var(--font-content);
   font-weight: 500;
   color: var(--slate-700);
   text-decoration: none;
@@ -175,16 +182,18 @@ a:hover {
   color: var(--blue-700);
 }
 
-/* ---------- Hero Banner ---------- */
+/* ---------- Hero Banner (Framed Card Style) ---------- */
 .hero-wrapper {
-  background: var(--white);
-  border-bottom: 1px solid var(--slate-200);
+  background: transparent;
+  padding: 28px 0 0;
 }
 
 .hero-banner-box {
   width: 100%;
-  max-width: 1120px;
-  margin: 0 auto;
+  background: var(--white);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
   position: relative;
 }
@@ -213,7 +222,7 @@ a:hover {
 
 .hero-meta {
   font-family: "Inter", "Sarabun", sans-serif;
-  font-size: 0.95rem;
+  font-size: var(--font-content);
   font-weight: 600;
   color: var(--sky-600);
   margin-bottom: 6px;
@@ -221,7 +230,7 @@ a:hover {
 
 .hero-title-en {
   font-family: "Inter", "Sarabun", sans-serif;
-  font-size: clamp(1.6rem, 3.2vw, 2.5rem);
+  font-size: clamp(1.6rem, 3.2vw, 2.4rem);
   font-weight: 800;
   color: var(--navy-900);
   margin: 0 0 4px;
@@ -229,7 +238,7 @@ a:hover {
 }
 
 .hero-title-th {
-  font-size: clamp(1.15rem, 2.1vw, 1.55rem);
+  font-size: clamp(1.15rem, 2.1vw, 1.5rem);
   font-weight: 600;
   color: var(--blue-700);
   margin: 0;
@@ -237,7 +246,7 @@ a:hover {
 
 /* ---------- Main Content & Sections ---------- */
 main {
-  padding: 34px 0 56px;
+  padding: 28px 0 56px;
 }
 
 .section-card {
@@ -262,7 +271,7 @@ main {
 
 .section-title {
   margin: 0;
-  font-size: 1.35rem;
+  font-size: var(--font-heading);
   font-weight: 700;
   color: var(--navy-900);
 }
@@ -280,6 +289,7 @@ main {
 .course-info-table {
   width: 100%;
   border-collapse: collapse;
+  font-size: var(--font-content);
 }
 
 .course-info-table tr {
@@ -296,6 +306,7 @@ main {
   padding: 11px 14px 11px 4px;
   text-align: left;
   vertical-align: top;
+  font-size: var(--font-content);
   font-weight: 600;
   color: var(--navy-800);
   background: transparent;
@@ -304,6 +315,7 @@ main {
 .course-info-table td {
   padding: 11px 4px 11px 12px;
   vertical-align: top;
+  font-size: var(--font-content);
   color: var(--slate-700);
 }
 
@@ -317,13 +329,14 @@ main {
 
 .description-box h3 {
   margin: 0 0 8px;
-  font-size: 1rem;
+  font-size: var(--font-subheading);
   font-weight: 700;
   color: var(--navy-900);
 }
 
 .description-box p {
   margin: 0 0 8px;
+  font-size: var(--font-content);
   color: var(--slate-700);
 }
 
@@ -354,18 +367,18 @@ main {
 
 .instructor-role {
   display: inline-block;
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 600;
   color: var(--sky-600);
   background: var(--sky-100);
-  padding: 2px 9px;
+  padding: 2px 10px;
   border-radius: 999px;
   margin-bottom: 8px;
 }
 
 .instructor-name {
   margin: 0 0 10px;
-  font-size: 1.04rem;
+  font-size: var(--font-subheading);
   font-weight: 700;
   color: var(--navy-900);
 }
@@ -374,7 +387,7 @@ main {
   list-style: none;
   margin: 0;
   padding: 0;
-  font-size: 0.9rem;
+  font-size: var(--font-content);
   color: var(--slate-600);
 }
 
@@ -408,12 +421,13 @@ main {
 .data-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.95rem;
+  font-size: var(--font-content);
 }
 
 .data-table thead th {
   background: var(--navy-900);
   color: var(--white);
+  font-size: var(--font-content);
   font-weight: 600;
   padding: 11px 14px;
   text-align: left;
@@ -423,6 +437,7 @@ main {
 
 .data-table tbody td {
   padding: 11px 14px;
+  font-size: var(--font-content);
   border-bottom: 1px solid var(--slate-200);
   color: var(--slate-700);
   vertical-align: top;
@@ -438,6 +453,7 @@ main {
 
 .data-table tfoot td {
   padding: 11px 14px;
+  font-size: var(--font-content);
   font-weight: 700;
   color: var(--navy-900);
   background: var(--sky-50);
@@ -459,27 +475,30 @@ main {
 
 .pct-value {
   font-family: "Inter", "Sarabun", sans-serif;
+  font-size: var(--font-content);
   font-weight: 700;
   color: var(--navy-900);
   white-space: nowrap;
 }
 
-/* ---------- Grading Section ---------- */
+/* ---------- Grading Section (Full Table Width) ---------- */
 .grading-intro {
   margin: 0 0 16px;
+  font-size: var(--font-content);
   color: var(--slate-700);
 }
 
 .grading-table-wrap {
-  max-width: 680px;
+  width: 100%;
 }
 
 .grade-badge {
   display: inline-block;
-  min-width: 34px;
+  min-width: 36px;
   padding: 2px 8px;
   border-radius: 6px;
   font-family: "Inter", "Sarabun", sans-serif;
+  font-size: var(--font-content);
   font-weight: 700;
   background: var(--sky-50);
   color: var(--navy-900);
@@ -494,6 +513,7 @@ main {
 
 .grading-pass-note {
   margin: 16px 0 12px;
+  font-size: var(--font-content);
   font-weight: 600;
   color: var(--navy-900);
 }
@@ -505,7 +525,7 @@ main {
   background: var(--slate-50);
   border: 1px solid var(--slate-200);
   color: var(--slate-600);
-  font-size: 0.93rem;
+  font-size: var(--font-content);
 }
 
 /* ---------- Schedule Section ---------- */
@@ -519,7 +539,7 @@ main {
 
 .schedule-block-title {
   margin: 0 0 10px;
-  font-size: 1.08rem;
+  font-size: var(--font-subheading);
   font-weight: 700;
   color: var(--navy-800);
   display: flex;
@@ -538,7 +558,7 @@ main {
 
 .schedule-table th,
 .schedule-table td {
-  font-size: 0.9rem;
+  font-size: var(--font-content);
   padding: 10px 10px;
 }
 
@@ -561,18 +581,18 @@ main {
 
 .exam-notice {
   margin-top: 12px;
-  padding: 11px 16px;
+  padding: 12px 16px;
   border-radius: var(--radius-md);
   background: var(--sky-50);
   border: 1px solid #bae6fd;
   color: var(--navy-900);
   font-weight: 600;
-  font-size: 0.94rem;
+  font-size: var(--font-content);
 }
 
-/* ---------- Group Table ---------- */
+/* ---------- Group Table (Clean White & Soft Gray) ---------- */
 .group-table tbody td {
-  font-size: 0.94rem;
+  font-size: var(--font-content);
   padding: 11px 14px;
   white-space: nowrap;
 }
@@ -588,73 +608,33 @@ main {
   color: var(--slate-700);
 }
 
-/* Distinct pastel color bands per lab group */
-.group-table tbody tr.group-band-0 {
-  background-color: #eff6ff !important;
-}
-.group-table tbody tr.group-band-0 td:first-child {
-  border-left: 4px solid #2563eb;
-  font-weight: 700;
-  color: #1d4ed8;
+/* Neutral alternating white & light-gray shading grouped by lab group */
+.group-table tbody tr.group-row-even {
+  background-color: var(--white) !important;
 }
 
-.group-table tbody tr.group-band-1 {
-  background-color: #ecfdf5 !important;
-}
-.group-table tbody tr.group-band-1 td:first-child {
-  border-left: 4px solid #059669;
-  font-weight: 700;
-  color: #047857;
-}
-
-.group-table tbody tr.group-band-2 {
-  background-color: #fffbeb !important;
-}
-.group-table tbody tr.group-band-2 td:first-child {
-  border-left: 4px solid #d97706;
-  font-weight: 700;
-  color: #b45309;
-}
-
-.group-table tbody tr.group-band-3 {
-  background-color: #f5f3ff !important;
-}
-.group-table tbody tr.group-band-3 td:first-child {
-  border-left: 4px solid #7c3aed;
-  font-weight: 700;
-  color: #6d28d9;
-}
-
-.group-table tbody tr.group-band-4 {
-  background-color: #fff1f2 !important;
-}
-.group-table tbody tr.group-band-4 td:first-child {
-  border-left: 4px solid #e11d48;
-  font-weight: 700;
-  color: #be123c;
-}
-
-.group-table tbody tr.group-band-5 {
-  background-color: #ecfeff !important;
-}
-.group-table tbody tr.group-band-5 td:first-child {
-  border-left: 4px solid #0891b2;
-  font-weight: 700;
-  color: #0e7490;
+.group-table tbody tr.group-row-odd {
+  background-color: var(--slate-100) !important;
 }
 
 .group-table tbody tr.group-divider td {
-  border-top: 2px solid #cbd5e1;
+  border-top: 2px solid var(--slate-300);
 }
 
-.group-pill {
+.group-label {
   display: inline-block;
   padding: 2px 10px;
-  border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  background: rgba(255, 255, 255, 0.78);
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 6px;
+  font-size: var(--font-content);
+  font-weight: 600;
+  color: var(--slate-700);
+  background: var(--slate-50);
+  border: 1px solid var(--slate-200);
+}
+
+.group-table tbody tr.group-row-odd .group-label {
+  background: var(--white);
+  border-color: var(--slate-300);
 }
 
 /* ---------- Footer ---------- */
@@ -664,7 +644,7 @@ main {
   padding: 24px 0;
   text-align: center;
   color: var(--slate-500);
-  font-size: 0.9rem;
+  font-size: var(--font-content);
 }
 
 .site-footer strong {
@@ -687,6 +667,14 @@ main {
     display: inline-flex;
   }
 
+  .hero-wrapper {
+    padding: 20px 0 0;
+  }
+
+  main {
+    padding: 20px 0 48px;
+  }
+
   .section-card {
     padding: 20px 16px;
   }
@@ -696,12 +684,12 @@ main {
     display: block;
     width: 100%;
     padding: 6px 2px;
+    font-size: var(--font-content);
   }
 
   .course-info-table th {
     padding-top: 10px;
     padding-bottom: 2px;
-    font-size: 0.9rem;
   }
 
   .course-info-table td {
